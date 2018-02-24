@@ -1,6 +1,7 @@
 package hecc.cloud.tenant.jpa;
 
 import hecc.cloud.tenant.entity.CodeEntity;
+import hecc.cloud.tenant.entity.TenantEntity;
 import hecc.cloud.tenant.enumer.CodeTypeEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,9 +25,12 @@ public class CodeRepositoryTest {
     @Test
     public void testCodeJPA(){
         CodeEntity code = new CodeEntity();
+        TenantEntity tenant = new TenantEntity();
+        tenant.id = 1L;
         code.code = "code11031";
         code.type = CodeTypeEnum.QUICK_PASS;
         code.platform = "quickpass";
+        code.tenant = tenant;
         codeRepository.saveAndFlush(code);
     }
 

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 /**
  * @Auther xuhoujun
  * @Description: 内部控制器
@@ -25,13 +27,15 @@ public class DomesticController extends BaseController {
     private CodeRepository codeRepository;
 
     @RequestMapping(value = "/code/create",method = RequestMethod.POST)
-    public String crateCode(Long userId,String platform,CodeTypeEnum codeType){
+    public String crateCode(Long tenantId, String platform, CodeTypeEnum codeType){
         CodeEntity codeEntity = new CodeEntity();
-        codeEntity.tenant = userId == null ? null:tenantRepository.findOne(userId);
+        codeEntity.tenant = tenantId == null ? null:tenantRepository.findOne(tenantId);
         codeEntity.type = codeType;
         codeEntity.platform = platform;
         codeRepository.saveAndFlush(codeEntity);
-        codeEntity.code = DigestUtils.sha1Hex(codeEntity.id+ "");
+        // TODO: 2018/2/24 这里只是个雏形，code的id没有 暂时先用uuid代替
+       // codeEntity.code = DigestUtils.sha1Hex(codeEntity.id+ "");
+        codeEntity.code = UUID.randomUUID().toString();
         codeRepository.save(codeEntity);
         return codeEntity.code;
     }
