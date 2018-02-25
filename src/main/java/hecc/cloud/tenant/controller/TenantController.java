@@ -21,10 +21,15 @@ public class TenantController {
     @Autowired
     TenantRepository tenantRepository;
 
-    @RequestMapping(value = "/user/getParent", method = RequestMethod.GET)
-    public TenantEntityVO getParent(Long userId) {
-        TenantEntity userEntity = tenantRepository.findOne(userId);
+    @RequestMapping(value = "/tenant/getParent", method = RequestMethod.GET)
+    public TenantEntityVO getParent(Long tenantId) {
+        TenantEntity userEntity = tenantRepository.findOne(tenantId);
         return userEntity.parent == null ? null : new TenantEntityVO(userEntity.parent);
+    }
+
+    @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
+    public TenantEntityVO getTenant(@PathVariable("tenantId") Long tenantId) {
+        return new TenantEntityVO(tenantRepository.findOne(tenantId));
     }
 
 }
