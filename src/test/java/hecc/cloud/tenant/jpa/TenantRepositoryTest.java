@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -28,4 +30,17 @@ public class TenantRepositoryTest {
         tenantRepository.save(tenant);
     }
 
+    @Test
+    public void testFindByParentIdAndDelIsFalse() {
+        List<TenantEntity> userEntityList = tenantRepository.findByParentIdAndDelIsFalse(1L);
+        System.out.println(userEntityList.size());
+        userEntityList.stream().forEach(tenant -> {
+            System.out.println(tenant.bankCardHasPWD);
+            System.out.println(tenant.receiverBankAccount);
+            System.out.println(tenant.platform);
+            System.out.println(tenant.receiverBankName);
+            System.out.println(tenant.mobile);
+            System.out.println(tenant.openid);
+        });
+    }
 }

@@ -8,6 +8,11 @@ import hecc.cloud.tenant.entity.TenantEntity;
  * @Date: Created In 下午8:25 on 2018/2/25.
  */
 public class TenantEntityVO extends BaseEntityVO {
+
+    /**
+     * 关联上级用户
+     */
+    public Long parent_id;
     /**
      * 租户姓名
      */
@@ -51,6 +56,7 @@ public class TenantEntityVO extends BaseEntityVO {
 
     public TenantEntityVO(TenantEntity entity) {
         super(entity);
+        this.parent_id = entity.parent == null ? null : entity.parent.id;
         this.name = entity.name;
         this.mobile = entity.mobile;
         this.merchantCode = entity.merchantCode;

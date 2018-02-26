@@ -5,10 +5,10 @@ import hecc.cloud.tenant.jpa.TenantRepository;
 import hecc.cloud.tenant.vo.TenantEntityVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Auther xuhoujun
@@ -33,6 +33,39 @@ public class TenantController {
     @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
     public TenantEntityVO getTenant(@PathVariable("tenantId") Long tenantId) {
         return new TenantEntityVO(tenantRepository.findOne(tenantId));
+    }
+
+    @ApiOperation(value = "更新租户信息")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public void updateTenant(@RequestBody TenantEntityVO user) {
+        TenantEntity domestic = tenantRepository.findOne(user.id);
+        if (user.receiverBankAccount != null) {
+            domestic.receiverBankAccount = user.receiverBankAccount;
+        }
+        if (user.receiverBankName != null) {
+            domestic.receiverBankName = user.receiverBankName;
+        }
+        if (user.mobile != null) {
+            domestic.mobile = user.mobile;
+        }
+        if (user.name != null) {
+            domestic.name = user.name;
+        }
+        if (user.idCard != null) {
+            domestic.idCard = user.idCard;
+        }
+        if (user.parent_id != null) {
+            domestic.parent = tenantRepository.findOne(user.parent_id);
+        }
+        tenantRepository.saveAndFlush(domestic);
+    }
+
+    @ApiOperation(value = "获取子租户信息")
+    @RequestMapping(value = "/tenant/{tenantId}/children", method = RequestMethod.GET)
+    List<TenantEntityVO> getChildren(@PathVariable("tenantId") Long tenantId) {
+        return tenantRepository.findByParentIdAndDelIsFalse(tenantId).stream()
+                .map(tenant -> new TenantEntityVO(tenant))
+                .collect(Collectors.toList());
     }
 
 }
