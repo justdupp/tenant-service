@@ -4,6 +4,7 @@ import hecc.cloud.tenant.entity.CodeEntity;
 import hecc.cloud.tenant.enumer.CodeTypeEnum;
 import hecc.cloud.tenant.jpa.CodeRepository;
 import hecc.cloud.tenant.jpa.TenantRepository;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class DomesticController extends BaseController {
     @Autowired
     private CodeRepository codeRepository;
 
+    @ApiOperation(value = "创建code")
     @RequestMapping(value = "/code/create",method = RequestMethod.POST)
     public String crateCode(Long tenantId, String platform, CodeTypeEnum codeType){
         CodeEntity codeEntity = new CodeEntity();
