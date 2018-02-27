@@ -1,1 +1,2 @@
 # tenant-service
+jdk8+
