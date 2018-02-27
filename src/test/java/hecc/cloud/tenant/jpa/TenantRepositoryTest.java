@@ -43,4 +43,25 @@ public class TenantRepositoryTest {
             System.out.println(tenant.openid);
         });
     }
+
+    @Test
+    public void testFindOneByPlatformAndTopTenantIsTrueAndDelIsFalse(){
+        TenantEntity entity = tenantRepository.findOneByPlatformAndTopTenantIsTrueAndDelIsFalse("credit");
+        System.out.println(entity.name);
+        System.out.println(entity.openid);
+    }
+
+    @Test
+    public void testFindByPlatformAndParentIsNullAndDelIsFalse() {
+        List<TenantEntity> entityList = tenantRepository.findByPlatformAndParentIsNullAndDelIsFalse("credit");
+        System.out.println(entityList.size());
+        entityList.stream().forEach(tenant -> {
+            System.out.println(tenant.bankCardHasPWD);
+            System.out.println(tenant.receiverBankAccount);
+            System.out.println(tenant.platform);
+            System.out.println(tenant.receiverBankName);
+            System.out.println(tenant.mobile);
+            System.out.println(tenant.openid);
+        });
+    }
 }

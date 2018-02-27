@@ -16,4 +16,11 @@ public interface TenantRepository extends JpaRepository<TenantEntity,Long> {
     @Query("select t from TenantEntity t where t.parent.id=?1 and t.del = false")
     List<TenantEntity> findByParentIdAndDelIsFalse(Long parentId);
 
+    @Query("select t from TenantEntity t where t.platform = ?1 and t.topTenant = true and t.del = false")
+    TenantEntity findOneByPlatformAndTopTenantIsTrueAndDelIsFalse(String platform);
+
+    @Query("select t from TenantEntity t where t.platform = ?1 and t.parent = null and t.del = false")
+    List<TenantEntity> findByPlatformAndParentIsNullAndDelIsFalse(String platform);
+
+
 }
