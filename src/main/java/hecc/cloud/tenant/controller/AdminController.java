@@ -2,11 +2,14 @@ package hecc.cloud.tenant.controller;
 
 import hecc.cloud.tenant.entity.TenantEntity;
 import hecc.cloud.tenant.jpa.TenantRepository;
+import hecc.cloud.tenant.vo.AdminTenantVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * @Auther xuhoujun
@@ -42,5 +45,13 @@ public class AdminController extends BaseController {
             });
             return successed(null);
         }
+    }
+
+    @ApiOperation(value = "获取默认租户")
+    @RequestMapping(value = "/fetchDefaultTenant",method = RequestMethod.GET)
+    public ResponseVO fetchDefaultTenant(){
+        return successed(tenantRepository.findByTopTenantIsTrueAndDelIsFalse().stream()
+                .map(tenant -> new AdminTenantVO(tenant))
+                .collect(toList()));
     }
 }
