@@ -39,7 +39,7 @@ public class AdminController extends BaseController {
         } else {
             newTopTenant.topTenant = true;
             tenantRepository.saveAndFlush(newTopTenant);
-            quickPassClient.setDefaultUser(tenantId);
+            quickPassClient.setDefaultTenant(tenantId);
             tenantRepository.findByPlatformAndParentIsNullAndDelIsFalse(newTopTenant.platform).forEach(u -> {
                 if (!u.id.equals(newTopTenant.id)) {
                     u.parent = newTopTenant;
@@ -57,4 +57,5 @@ public class AdminController extends BaseController {
                 .map(tenant -> new AdminTenantVO(tenant))
                 .collect(toList()));
     }
+
 }

@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("quickpass-service")
 public interface QuickPassClient {
     @PostMapping("/domestic/tenant/default")
-    CodeVO setDefaultUser(@RequestParam("tenantId") Long tenantId);
+    CodeVO setDefaultTenant(@RequestParam("tenantId") Long tenantId);
 
 }
