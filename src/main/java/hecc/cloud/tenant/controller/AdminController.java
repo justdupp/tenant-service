@@ -1,5 +1,6 @@
 package hecc.cloud.tenant.controller;
 
+import hecc.cloud.tenant.client.QuickPassClient;
 import hecc.cloud.tenant.entity.TenantEntity;
 import hecc.cloud.tenant.jpa.TenantRepository;
 import hecc.cloud.tenant.vo.AdminTenantVO;
@@ -24,6 +25,8 @@ public class AdminController extends BaseController {
 
     @Autowired
     private TenantRepository tenantRepository;
+    @Autowired
+    QuickPassClient quickPassClient;
 
     @ApiOperation(value = "设置默认租户")
     @RequestMapping(value = "/setDefaultTenant", method = RequestMethod.POST)
@@ -36,7 +39,7 @@ public class AdminController extends BaseController {
         } else {
             newTopTenant.topTenant = true;
             tenantRepository.saveAndFlush(newTopTenant);
-            // TODO: 2018/2/27  quickpass客户段   待添加
+            quickPassClient.setDefaultUser(tenantId);
             tenantRepository.findByPlatformAndParentIsNullAndDelIsFalse(newTopTenant.platform).forEach(u -> {
                 if (!u.id.equals(newTopTenant.id)) {
                     u.parent = newTopTenant;
