@@ -9,10 +9,7 @@ import hecc.cloud.tenant.vo.TenantEntityVO;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -45,16 +42,4 @@ public class DomesticController extends BaseController {
         return codeEntity.code;
     }
 
-    @ApiOperation(value = "获取上级租户信息")
-    @RequestMapping(value = "/tenant/getParent", method = RequestMethod.GET)
-    public TenantEntityVO getParent(Long tenantId) {
-        TenantEntity tenantEntity = tenantRepository.findOne(tenantId);
-        return tenantEntity.parent == null ? null : new TenantEntityVO(tenantEntity.parent);
-    }
-
-    @ApiOperation(value = "获取租户信息")
-    @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
-    public TenantEntityVO getTenant(@PathVariable("tenantId") Long tenantId) {
-        return new TenantEntityVO(tenantRepository.findOne(tenantId));
-    }
 }

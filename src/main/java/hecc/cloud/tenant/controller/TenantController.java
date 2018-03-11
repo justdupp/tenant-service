@@ -23,14 +23,14 @@ public class TenantController {
     TenantRepository tenantRepository;
 
     @ApiOperation(value = "获取上层租户")
-    @RequestMapping(value = "/tenant/getParent", method = RequestMethod.GET)
+    @RequestMapping(value = "/getParent", method = RequestMethod.GET)
     public TenantEntityVO getParent(Long tenantId) {
         TenantEntity userEntity = tenantRepository.findOne(tenantId);
         return userEntity.parent == null ? null : new TenantEntityVO(userEntity.parent);
     }
 
     @ApiOperation(value = "获取相应的租户信息")
-    @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{tenantId}", method = RequestMethod.GET)
     public TenantEntityVO getTenant(@PathVariable("tenantId") Long tenantId) {
         return new TenantEntityVO(tenantRepository.findOne(tenantId));
     }
@@ -61,7 +61,7 @@ public class TenantController {
     }
 
     @ApiOperation(value = "获取子租户信息")
-    @RequestMapping(value = "/tenant/{tenantId}/children", method = RequestMethod.GET)
+    @RequestMapping(value = "/{tenantId}/children", method = RequestMethod.GET)
     List<TenantEntityVO> getChildren(@PathVariable("tenantId") Long tenantId) {
         return tenantRepository.findByParentIdAndDelIsFalse(tenantId).stream()
                 .map(tenant -> new TenantEntityVO(tenant))
