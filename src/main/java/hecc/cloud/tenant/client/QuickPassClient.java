@@ -2,7 +2,6 @@ package hecc.cloud.tenant.client;
 
 import hecc.cloud.tenant.client.vo.CodeVO;
 import hecc.cloud.tenant.controller.BaseController.ResponseVO;
-import hecc.cloud.tenant.controller.BaseController;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

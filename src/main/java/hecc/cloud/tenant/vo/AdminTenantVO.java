@@ -5,7 +5,7 @@ import org.apache.commons.lang.time.DateFormatUtils;
 
 /**
  * @Auther xuhoujun
- * @Description:
+ * @Description: admin 租户VO
  * @Date: Created In 下午10:41 on 2018/2/27.
  */
 public class AdminTenantVO {
