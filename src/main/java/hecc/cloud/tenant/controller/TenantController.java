@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 /**
  * @Auther xuhoujun
@@ -26,8 +26,6 @@ public class TenantController extends BaseController  {
 
     @Autowired
     TenantRepository tenantRepository;
-    @Autowired
-    QuickPassClient quickPassClient;
 
     @ApiOperation(value = "获取上层租户")
     @RequestMapping(value = "/getParent", method = RequestMethod.GET)
@@ -72,7 +70,7 @@ public class TenantController extends BaseController  {
     List<TenantEntityVO> getChildren(@PathVariable("tenantId") Long tenantId) {
         return tenantRepository.findByParentIdAndDelIsFalse(tenantId).stream()
                 .map(tenant -> new TenantEntityVO(tenant))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @ApiOperation(value = "获取租户信息")
@@ -84,16 +82,13 @@ public class TenantController extends BaseController  {
                     : Arrays.asList(new AdminTenantVO(tenant)));
         } else if (StringUtils.isNotBlank(platform) && StringUtils.isNotBlank(name)) {
             return successed(tenantRepository.findByNameAndPlatformAndDelIsFalse(name, platform).stream()
-                    .map(tenant -> new AdminTenantVO(tenant)).collect(
-                            Collectors.toList()));
+                    .map(tenant -> new AdminTenantVO(tenant)).collect(toList()));
         } else if (StringUtils.isBlank(platform) && StringUtils.isNotBlank(name)) {
             return successed(tenantRepository.findByNameAndDelIsFalse(name).stream()
-                    .map(tenant -> new AdminTenantVO(tenant)).collect(
-                            Collectors.toList()));
+                    .map(tenant -> new AdminTenantVO(tenant)).collect(toList()));
         } else if (StringUtils.isNotBlank(platform) && StringUtils.isBlank(name)) {
             return successed(tenantRepository.findByPlatformAndDelIsFalse(platform).stream()
-                    .map(tenant -> new AdminTenantVO(tenant)).collect(
-                            Collectors.toList()));
+                    .map(tenant -> new AdminTenantVO(tenant)).collect(toList()));
         } else {
             return failed("参数不能都为空", 1001);
         }
