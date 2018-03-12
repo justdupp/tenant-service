@@ -1,12 +1,17 @@
 package hecc.cloud.tenant.controller;
 
+import hecc.cloud.tenant.client.QuickPassClient;
 import hecc.cloud.tenant.entity.TenantEntity;
 import hecc.cloud.tenant.jpa.TenantRepository;
+import hecc.cloud.tenant.vo.AdminTenantVO;
 import hecc.cloud.tenant.vo.TenantEntityVO;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,10 +22,12 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/tenant")
-public class TenantController {
+public class TenantController extends BaseController  {
 
     @Autowired
     TenantRepository tenantRepository;
+    @Autowired
+    QuickPassClient quickPassClient;
 
     @ApiOperation(value = "获取上层租户")
     @RequestMapping(value = "/getParent", method = RequestMethod.GET)
@@ -66,6 +73,30 @@ public class TenantController {
         return tenantRepository.findByParentIdAndDelIsFalse(tenantId).stream()
                 .map(tenant -> new TenantEntityVO(tenant))
                 .collect(Collectors.toList());
+    }
+
+    @ApiOperation(value = "获取租户信息")
+    @RequestMapping(value = "/tenantList", method = RequestMethod.GET)
+    public ResponseVO fetchTenants(String platform, Long tenantId, String name) {
+        if (tenantId != null) {
+            TenantEntity tenant = tenantRepository.findOne(tenantId);
+            return successed(tenant == null ? Collections.emptyList()
+                    : Arrays.asList(new AdminTenantVO(tenant)));
+        } else if (StringUtils.isNotBlank(platform) && StringUtils.isNotBlank(name)) {
+            return successed(tenantRepository.findByNameAndPlatformAndDelIsFalse(name, platform).stream()
+                    .map(tenant -> new AdminTenantVO(tenant)).collect(
+                            Collectors.toList()));
+        } else if (StringUtils.isBlank(platform) && StringUtils.isNotBlank(name)) {
+            return successed(tenantRepository.findByNameAndDelIsFalse(name).stream()
+                    .map(tenant -> new AdminTenantVO(tenant)).collect(
+                            Collectors.toList()));
+        } else if (StringUtils.isNotBlank(platform) && StringUtils.isBlank(name)) {
+            return successed(tenantRepository.findByPlatformAndDelIsFalse(platform).stream()
+                    .map(tenant -> new AdminTenantVO(tenant)).collect(
+                            Collectors.toList()));
+        } else {
+            return failed("参数不能都为空", 1001);
+        }
     }
 
 }
