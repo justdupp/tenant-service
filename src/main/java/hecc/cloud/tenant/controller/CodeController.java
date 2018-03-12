@@ -2,7 +2,9 @@ package hecc.cloud.tenant.controller;
 
 import hecc.cloud.tenant.client.QuickPassClient;
 import hecc.cloud.tenant.client.vo.CodeVO;
+import hecc.cloud.tenant.entity.CodeEntity;
 import hecc.cloud.tenant.entity.TenantEntity;
+import hecc.cloud.tenant.jpa.CodeRepository;
 import hecc.cloud.tenant.jpa.TenantRepository;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.BooleanUtils;
@@ -25,6 +27,8 @@ public class CodeController extends BaseController {
     private QuickPassClient quickPassClient;
     @Autowired
     private TenantRepository tenantRepository;
+    @Autowired
+    private CodeRepository codeRepository;
 
     @ApiOperation(value = "更新码信息")
     @RequestMapping(value = "/modifyCode", method = RequestMethod.POST)
@@ -75,6 +79,31 @@ public class CodeController extends BaseController {
     @RequestMapping(value = "/fetchDefaultCodes", method = RequestMethod.GET)
     public ResponseVO fetchDefaultCodes() {
         return successed(quickPassClient.fetchDefaultCodes());
+    }
+
+    @ApiOperation(value = "获取码列表")
+    @RequestMapping(value = "/codes", method = RequestMethod.GET)
+    public ResponseVO fetchCodes(Long tenantId) {
+        if (tenantId != null) {
+            return successed(quickPassClient.getCodeListByTenantId(tenantId));
+        } else {
+            return failed("tenantId不能为空", 1001);
+        }
+    }
+
+    @ApiOperation(value = "绑码")
+    @RequestMapping(value = "/bindCode", method = RequestMethod.POST)
+    public ResponseVO bindCode(Long tenantId, String code) {
+        if (tenantId != null && StringUtils.isNotBlank(code)) {
+            TenantEntity tenant = tenantRepository.findOne(tenantId);
+            CodeEntity codeEntity = codeRepository.findOneByCodeAndDelIsFalse(code);
+            tenant.parent = codeEntity.tenant;
+            tenantRepository.save(tenant);
+            quickPassClient.bindCode(code, tenantId);
+            return successed(null);
+        } else {
+            return failed("tenantId或codeId不能为空", 1001);
+        }
     }
 
 
