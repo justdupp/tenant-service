@@ -26,6 +26,8 @@ public class TenantController extends BaseController  {
 
     @Autowired
     TenantRepository tenantRepository;
+    @Autowired
+    QuickPassClient quickPassClient;
 
     @ApiOperation(value = "获取上层租户")
     @RequestMapping(value = "/getParent", method = RequestMethod.GET)
@@ -92,6 +94,37 @@ public class TenantController extends BaseController  {
         } else {
             return failed("参数不能都为空", 1001);
         }
+    }
+
+
+    @ApiOperation(value = "设置默认租户")
+    @RequestMapping(value = "/setDefaultTenant", method = RequestMethod.POST)
+    public ResponseVO setDefaultUser(Long tenantId) {
+        TenantEntity newTopTenant = tenantRepository.findOne(tenantId);
+        TenantEntity oldTopTenant = tenantRepository
+                .findOneByPlatformAndTopTenantIsTrueAndDelIsFalse(newTopTenant.platform);
+        if (oldTopTenant != null) {
+            return failed("已经存在顶级租户", 1001);
+        } else {
+            newTopTenant.topTenant = true;
+            tenantRepository.saveAndFlush(newTopTenant);
+            quickPassClient.setDefaultTenant(tenantId);
+            tenantRepository.findByPlatformAndParentIsNullAndDelIsFalse(newTopTenant.platform).forEach(u -> {
+                if (!u.id.equals(newTopTenant.id)) {
+                    u.parent = newTopTenant;
+                    tenantRepository.save(u);
+                }
+            });
+            return successed(null);
+        }
+    }
+
+    @ApiOperation(value = "获取默认租户")
+    @RequestMapping(value = "/fetchDefaultTenant",method = RequestMethod.GET)
+    public ResponseVO fetchDefaultTenant(){
+        return successed(tenantRepository.findByTopTenantIsTrueAndDelIsFalse().stream()
+                .map(tenant -> new AdminTenantVO(tenant))
+                .collect(toList()));
     }
 
 }
