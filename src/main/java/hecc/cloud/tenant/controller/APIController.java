@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @Auther xuhoujun
  * @Description: API控制器
@@ -27,5 +29,16 @@ public class APIController extends  BaseController{
     public ResponseVO getInfo(@RequestHeader Long tenantId) {
         TenantEntity tenant = tenantRepository.findOne(tenantId);
         return successed(new TenantEntityVO(tenant));
+    }
+
+    @ApiOperation(value = "上传图片")
+    @RequestMapping(value = "/uploadPics", method = RequestMethod.POST)
+    public ResponseVO uploadPics(@RequestHeader Long userId, @NotNull String idCardFontPic,
+                                 @NotNull String idCardBackPicUrl) {
+        TenantEntity tenant = tenantRepository.findOne(userId);
+        tenant.idCardFontPic = idCardFontPic;
+        tenant.idCardBackPic = idCardBackPicUrl;
+        tenantRepository.save(tenant);
+        return successed(null);
     }
 }

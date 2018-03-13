@@ -75,4 +75,13 @@ public class TenantEntity extends BaseEntity{
      */
     public Boolean topTenant;
 
+    /**
+     * 身份证正面照
+     */
+    public String idCardFontPic;
+    /**
+     * 身份证反面照
+     */
+    public String idCardBackPic;
+
 }
