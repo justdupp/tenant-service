@@ -1,6 +1,10 @@
 package hecc.cloud.tenant.controller;
 
+import hecc.cloud.tenant.client.QuickPassClient;
+import hecc.cloud.tenant.client.vo.BindVO;
+import hecc.cloud.tenant.entity.CodeEntity;
 import hecc.cloud.tenant.entity.TenantEntity;
+import hecc.cloud.tenant.jpa.CodeRepository;
 import hecc.cloud.tenant.jpa.TenantRepository;
 import hecc.cloud.tenant.service.AuthCardService;
 import hecc.cloud.tenant.vo.TenantEntityVO;
@@ -31,6 +35,10 @@ public class APIController extends BaseController{
     private TenantRepository tenantRepository;
     @Autowired
     private AuthCardService authCardService;
+    @Autowired
+    private CodeRepository codeRepository;
+    @Autowired
+    private QuickPassClient quickPassClient;
 
     @ApiOperation(value = "获取租户信息")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
@@ -41,9 +49,9 @@ public class APIController extends BaseController{
 
     @ApiOperation(value = "上传图片")
     @RequestMapping(value = "/uploadPics", method = RequestMethod.POST)
-    public ResponseVO uploadPics(@RequestHeader Long userId, @NotNull String idCardFontPic,
+    public ResponseVO uploadPics(@RequestHeader Long tenantId, @NotNull String idCardFontPic,
                                  @NotNull String idCardBackPicUrl) {
-        TenantEntity tenant = tenantRepository.findOne(userId);
+        TenantEntity tenant = tenantRepository.findOne(tenantId);
         tenant.idCardFontPic = idCardFontPic;
         tenant.idCardBackPic = idCardBackPicUrl;
         tenantRepository.save(tenant);
@@ -64,5 +72,31 @@ public class APIController extends BaseController{
             logger.error(e.getMessage(), e);
             return failed("鉴权失败,请稍后重试", ERROR_CODE_AUTH_FAILED);
         }
+    }
+
+    @RequestMapping(value = "/bind", method = RequestMethod.POST)
+    public ResponseVO bind(@RequestHeader Long tenantId, @NotNull String code) {
+        TenantEntity tenant = tenantRepository.findOne(tenantId);
+        CodeEntity codeEntity = codeRepository.findOneByCodeAndDelIsFalse(code);
+        if (codeEntity == null) {
+            return failed("码不存在或已被删除", ERROR_BIND_CODE_NOT_FOUND);
+        }
+        if (!codeEntity.platform.equals(tenant.platform)) {
+            return failed("您不能绑定此码", ERROR_BIND_CODE_WRONG_PLATFORM);
+        }
+        switch (codeEntity.type) {
+            case QUICK_PASS:
+                if (!quickPassClient.isCurrentTenantUseDefaultCode(tenantId) && !codeEntity.tenant.id.equals(tenant.parent.id)) {
+                    return failed(String.format("您不能绑定此码  %s[%s]",
+                                    tenant.parent.name, tenant.parent.mobile), ERROR_BIND_CODE_FAILED);
+                }
+                tenant.parent = codeEntity.tenant;
+                tenantRepository.save(tenant);
+                return successed(new BindVO( tenant.parent));
+            case CREDIT_CARD:
+                //TODO: 去网银系统进行绑定
+                break;
+        }
+        return successed(null);
     }
 }
