@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public abstract class BaseController {
 
     protected static final int ERROR_VALID_FAILED = 1000;
-    protected static final int ERROR_AUTH_FAILED = 2001;
+    protected static final int ERROR_CODE_AUTH_FAILED = 2001;
     protected static final int ERROR_BIND_CODE_FAILED = 2002;
     protected static final int ERROR_BIND_CODE_NOT_FOUND = 2004;
     protected static final int ERROR_BIND_CODE_WRONG_PLATFORM = 2005;
