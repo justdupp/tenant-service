@@ -12,7 +12,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tenant")
-public class TenantEntity extends BaseEntity{
+public class TenantEntity extends BaseEntity {
 
     /**
      * 关联上级租户

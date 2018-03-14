@@ -30,16 +30,16 @@ public class ProductController extends BaseController {
     @ApiOperation(value = "新增产品")
     @PostMapping("/add")
     public ResponseVO addProduct(String name, String short_name, String bank_logo,
-                                 String bank_detail, String money, CreditBankTypeEnum type,Boolean show) {
+                                 String bank_detail, String money, CreditBankTypeEnum type, Boolean show) {
         creditClient.saveAndUpdateCard(
-                new CardVO(null, name, type, short_name, bank_logo, bank_detail, money,show));
+                new CardVO(null, name, type, short_name, bank_logo, bank_detail, money, show));
         return successed(null);
     }
 
     @ApiOperation(value = "更新产品")
     @PostMapping("/modify")
     public ResponseVO modProduct(Long id, String name, String short_name, String bank_logo,
-                                  String bank_detail, String money, CreditBankTypeEnum type, Boolean show) {
+                                 String bank_detail, String money, CreditBankTypeEnum type, Boolean show) {
         creditClient.saveAndUpdateCard(
                 new CardVO(id, name, type, short_name, bank_logo, bank_detail, money, show));
         return successed(null);

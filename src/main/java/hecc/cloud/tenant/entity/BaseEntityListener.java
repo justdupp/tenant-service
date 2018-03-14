@@ -12,10 +12,11 @@ public class BaseEntityListener {
 
     /**
      * 用于更新修改时间
+     *
      * @param baseEntity 基础实体参数
      */
     @PreUpdate
-    public void updateModifyDate(BaseEntity baseEntity){
+    public void updateModifyDate(BaseEntity baseEntity) {
         baseEntity.modifyDate = new Date();
     }
 }

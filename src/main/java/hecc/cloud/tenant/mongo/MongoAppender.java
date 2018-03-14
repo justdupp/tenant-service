@@ -7,9 +7,10 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
+
 /**
  * @Auther xuhoujun
- * @Description:  mongo添加器
+ * @Description: mongo添加器
  * @Date: Created In 下午11:31 on 2018/3/14.
  */
 public class MongoAppender extends AppenderSkeleton {
@@ -24,7 +25,7 @@ public class MongoAppender extends AppenderSkeleton {
 
     @Override
     protected void append(LoggingEvent loggingEvent) {
-        if(mongoDatabase == null) {
+        if (mongoDatabase == null) {
             MongoClientURI connectionString = new MongoClientURI(connectionUrl);
             mongoClient = new MongoClient(connectionString);
             mongoDatabase = mongoClient.getDatabase(databaseName);
@@ -35,7 +36,7 @@ public class MongoAppender extends AppenderSkeleton {
 
     @Override
     public void close() {
-        if(mongoClient != null) {
+        if (mongoClient != null) {
             mongoClient.close();
         }
     }

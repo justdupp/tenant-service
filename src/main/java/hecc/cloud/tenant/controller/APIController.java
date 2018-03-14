@@ -27,7 +27,7 @@ import java.io.IOException;
  */
 @RestController
 @RequestMapping("/api/tenant/")
-public class APIController extends BaseController{
+public class APIController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(APIController.class);
 
@@ -88,11 +88,11 @@ public class APIController extends BaseController{
             case QUICK_PASS:
                 if (!quickPassClient.isCurrentTenantUseDefaultCode(tenantId) && !codeEntity.tenant.id.equals(tenant.parent.id)) {
                     return failed(String.format("您不能绑定此码  %s[%s]",
-                                    tenant.parent.name, tenant.parent.mobile), ERROR_BIND_CODE_FAILED);
+                            tenant.parent.name, tenant.parent.mobile), ERROR_BIND_CODE_FAILED);
                 }
                 tenant.parent = codeEntity.tenant;
                 tenantRepository.save(tenant);
-                return successed(new BindVO( tenant.parent));
+                return successed(new BindVO(tenant.parent));
             case CREDIT_CARD:
                 //TODO: 去网银系统进行绑定
                 break;

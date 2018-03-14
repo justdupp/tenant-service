@@ -22,11 +22,11 @@ public abstract class BaseController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public ResponseVO validErrorHandler(MethodArgumentNotValidException e){
-        return failed(e.getMessage(),ERROR_VALID_FAILED);
+    public ResponseVO validErrorHandler(MethodArgumentNotValidException e) {
+        return failed(e.getMessage(), ERROR_VALID_FAILED);
     }
 
-    protected ResponseVO successed(Object obj){
+    protected ResponseVO successed(Object obj) {
         ResponseVO result = new ResponseVO();
         result.msg = "OK";
         result.code = 0;
@@ -34,7 +34,7 @@ public abstract class BaseController {
         return result;
     }
 
-    protected ResponseVO failed(String msg,Integer code){
+    protected ResponseVO failed(String msg, Integer code) {
         ResponseVO result = new ResponseVO();
         result.msg = msg;
         result.code = code;
@@ -42,7 +42,7 @@ public abstract class BaseController {
         return result;
     }
 
-    public static class ResponseVO{
+    public static class ResponseVO {
         public String msg;
         public Integer code;
         public Object object;

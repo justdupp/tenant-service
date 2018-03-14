@@ -4,7 +4,7 @@ import hecc.cloud.tenant.enumer.CreditBankTypeEnum;
 
 /**
  * @Auther xuhoujun
- * @Description:  银行卡VO
+ * @Description: 银行卡VO
  * @Date: Created In 下午10:57 on 2018/3/14.
  */
 public class CardVO {
@@ -44,7 +44,7 @@ public class CardVO {
     }
 
     public CardVO(Long id, String name, CreditBankTypeEnum type, String short_name,
-                  String bank_logo, String bank_detail, String money,Boolean show) {
+                  String bank_logo, String bank_detail, String money, Boolean show) {
         this.id = id;
         this.name = name;
         this.type = type;

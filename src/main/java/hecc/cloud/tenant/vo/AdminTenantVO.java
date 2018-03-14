@@ -24,6 +24,6 @@ public class AdminTenantVO {
         this.idCard = tenant.idCard;
         this.mobile = tenant.mobile;
         this.platform = tenant.platform;
-        this.createDate = DateFormatUtils.format(tenant.createDate,DATE_TIME_FORMAT_PATTERN);
+        this.createDate = DateFormatUtils.format(tenant.createDate, DATE_TIME_FORMAT_PATTERN);
     }
 }

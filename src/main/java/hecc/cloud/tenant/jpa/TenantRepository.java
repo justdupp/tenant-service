@@ -11,7 +11,7 @@ import java.util.List;
  * @Description: 租户jpa
  * @Date: Created In 下午2:00 on 2018/2/24.
  */
-public interface TenantRepository extends JpaRepository<TenantEntity,Long> {
+public interface TenantRepository extends JpaRepository<TenantEntity, Long> {
 
     @Query("select t from TenantEntity t where t.parent.id=?1 and t.del = false")
     List<TenantEntity> findByParentIdAndDelIsFalse(Long parentId);
@@ -30,9 +30,6 @@ public interface TenantRepository extends JpaRepository<TenantEntity,Long> {
     List<TenantEntity> findByNameAndDelIsFalse(String name);
 
     List<TenantEntity> findByPlatformAndDelIsFalse(String platform);
-
-
-
 
 
 }

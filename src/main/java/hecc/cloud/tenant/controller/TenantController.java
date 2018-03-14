@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -22,7 +23,7 @@ import static java.util.stream.Collectors.toList;
  */
 @RestController
 @RequestMapping("/tenant")
-public class TenantController extends BaseController  {
+public class TenantController extends BaseController {
 
     @Autowired
     TenantRepository tenantRepository;
@@ -120,8 +121,8 @@ public class TenantController extends BaseController  {
     }
 
     @ApiOperation(value = "获取默认租户")
-    @RequestMapping(value = "/fetchDefaultTenant",method = RequestMethod.GET)
-    public ResponseVO fetchDefaultTenant(){
+    @RequestMapping(value = "/fetchDefaultTenant", method = RequestMethod.GET)
+    public ResponseVO fetchDefaultTenant() {
         return successed(tenantRepository.findByTopTenantIsTrueAndDelIsFalse().stream()
                 .map(tenant -> new AdminTenantVO(tenant))
                 .collect(toList()));

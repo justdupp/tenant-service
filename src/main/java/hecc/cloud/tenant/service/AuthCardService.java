@@ -13,7 +13,7 @@ import java.net.URLEncoder;
 
 /**
  * @Auther xuhoujun
- * @Description:   auth service
+ * @Description: auth service
  * @Date: Created In 下午9:34 on 2018/3/13.
  */
 @Component

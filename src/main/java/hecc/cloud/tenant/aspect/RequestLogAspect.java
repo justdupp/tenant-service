@@ -16,9 +16,10 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+
 /**
  * @Auther xuhoujun
- * @Description:  请求切面
+ * @Description: 请求切面
  * @Date: Created In 下午11:15 on 2018/3/14.
  */
 @Aspect
@@ -29,7 +30,8 @@ public class RequestLogAspect {
     private Logger logger = Logger.getLogger(RequestLogAspect.class);
 
     @Pointcut("execution(public * hecc.cloud.tenant.controller..*.*(..))")
-    public void requestLog(){}
+    public void requestLog() {
+    }
 
     @Before("requestLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
@@ -68,8 +70,9 @@ public class RequestLogAspect {
 
     /**
      * 获取头信息
-     * @param request  请求
-     * @return  请求头信息
+     *
+     * @param request 请求
+     * @return 请求头信息
      */
     private Map<String, String> getHeadersInfo(HttpServletRequest request) {
         Map<String, String> map = new HashMap<>();

@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * @Auther xuhoujun
- * @Description:  返回对象基本VO
+ * @Description: 返回对象基本VO
  * @Date: Created In 下午8:21 on 2018/2/25.
  */
 public abstract class BaseEntityVO {

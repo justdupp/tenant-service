@@ -28,15 +28,15 @@ public class DomesticController extends BaseController {
     private CodeRepository codeRepository;
 
     @ApiOperation(value = "创建code")
-    @RequestMapping(value = "/code/create",method = RequestMethod.POST)
-    public String crateCode(Long tenantId, String platform, CodeTypeEnum codeType){
+    @RequestMapping(value = "/code/create", method = RequestMethod.POST)
+    public String crateCode(Long tenantId, String platform, CodeTypeEnum codeType) {
         CodeEntity codeEntity = new CodeEntity();
-        codeEntity.tenant = tenantId == null ? null:tenantRepository.findOne(tenantId);
+        codeEntity.tenant = tenantId == null ? null : tenantRepository.findOne(tenantId);
         codeEntity.type = codeType;
         codeEntity.platform = platform;
         codeRepository.saveAndFlush(codeEntity);
         // TODO: 2018/2/24 这里只是个雏形，code的id没有 暂时先用uuid代替
-       // codeEntity.code = DigestUtils.sha1Hex(codeEntity.id+ "");
+        // codeEntity.code = DigestUtils.sha1Hex(codeEntity.id+ "");
         codeEntity.code = UUID.randomUUID().toString();
         codeRepository.save(codeEntity);
         return codeEntity.code;

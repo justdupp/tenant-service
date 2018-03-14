@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @Auther xuhoujun
- * @Description:  闪付客户端接口
+ * @Description: 闪付客户端接口
  * @Date: Created In 下午10:45 on 2018/2/27.
  */
 @FeignClient("quickpass-service")

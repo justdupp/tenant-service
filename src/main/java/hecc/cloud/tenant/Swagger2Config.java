@@ -26,14 +26,14 @@ public class Swagger2Config {
     private boolean isEnable;
 
     @Bean
-    public Docket createRestApi(){
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2).enable(isEnable)
                 .apiInfo(apiInfo()).host(hostName).select()
                 .apis(RequestHandlerSelectors.basePackage("hecc.cloud.tenant"))
                 .paths(PathSelectors.any()).build();
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("租户业务中心 APIS")
                 .description("具体内容详见：http://xuhoujun.com")
                 .termsOfServiceUrl("http://xuhoujun.com")

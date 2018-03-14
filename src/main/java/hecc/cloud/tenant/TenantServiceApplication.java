@@ -10,15 +10,15 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableFeignClients
-@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = {MongoAutoConfiguration.class})
 public class TenantServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TenantServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TenantServiceApplication.class, args);
+    }
 
-	@Bean
-	public OkHttpClient okHttpClient() {
-		return new OkHttpClient();
-	}
+    @Bean
+    public OkHttpClient okHttpClient() {
+        return new OkHttpClient();
+    }
 }

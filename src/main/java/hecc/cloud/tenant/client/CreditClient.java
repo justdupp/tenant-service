@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @Auther xuhoujun
- * @Description:  creditClient
+ * @Description: creditClient
  * @Date: Created In 下午10:19 on 2018/3/14.
  */
 @FeignClient("credit-service")
