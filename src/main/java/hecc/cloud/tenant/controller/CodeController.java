@@ -1,11 +1,11 @@
 package hecc.cloud.tenant.controller;
 
 import hecc.cloud.tenant.client.QuickPassClient;
-import hecc.cloud.tenant.client.vo.CodeVO;
 import hecc.cloud.tenant.entity.CodeEntity;
 import hecc.cloud.tenant.entity.TenantEntity;
 import hecc.cloud.tenant.jpa.CodeRepository;
 import hecc.cloud.tenant.jpa.TenantRepository;
+import hecc.cloud.tenant.vo.quickpass.CodeVO;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;

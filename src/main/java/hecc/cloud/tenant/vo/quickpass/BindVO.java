@@ -1,4 +1,4 @@
-package hecc.cloud.tenant.client.vo;
+package hecc.cloud.tenant.vo.quickpass;
 
 import hecc.cloud.tenant.entity.TenantEntity;
 import org.apache.commons.lang.StringUtils;
@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * @Auther xuhoujun
  * @Description: 绑定VO
- * @Date: Created In 下午10:32 on 2018/3/13.
+ * @Date: Created In 下午11:06 on 2018/3/14.
  */
 public class BindVO {
     public String name;

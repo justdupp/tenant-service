@@ -1,13 +1,13 @@
 package hecc.cloud.tenant.controller;
 
 import hecc.cloud.tenant.client.QuickPassClient;
-import hecc.cloud.tenant.client.vo.BindVO;
 import hecc.cloud.tenant.entity.CodeEntity;
 import hecc.cloud.tenant.entity.TenantEntity;
 import hecc.cloud.tenant.jpa.CodeRepository;
 import hecc.cloud.tenant.jpa.TenantRepository;
 import hecc.cloud.tenant.service.AuthCardService;
 import hecc.cloud.tenant.vo.TenantEntityVO;
+import hecc.cloud.tenant.vo.quickpass.BindVO;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
