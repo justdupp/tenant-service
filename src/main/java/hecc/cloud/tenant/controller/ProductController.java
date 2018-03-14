@@ -1,8 +1,8 @@
 package hecc.cloud.tenant.controller;
 
 import hecc.cloud.tenant.client.CreditClient;
-import hecc.cloud.tenant.client.credit.CardVO;
 import hecc.cloud.tenant.enumer.CreditBankTypeEnum;
+import hecc.cloud.tenant.vo.credit.CardVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Auther xuhoujun
- * @Description:
+ * @Description: 产品控制器
  * @Date: Created In 下午10:26 on 2018/3/14.
  */
 @RestController

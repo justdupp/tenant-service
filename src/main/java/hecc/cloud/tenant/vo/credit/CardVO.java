@@ -1,11 +1,11 @@
-package hecc.cloud.tenant.client.credit;
+package hecc.cloud.tenant.vo.credit;
 
 import hecc.cloud.tenant.enumer.CreditBankTypeEnum;
 
 /**
  * @Auther xuhoujun
- * @Description:
- * @Date: Created In 下午10:23 on 2018/3/14.
+ * @Description:  银行卡VO
+ * @Date: Created In 下午10:57 on 2018/3/14.
  */
 public class CardVO {
     public Long id;
@@ -54,5 +54,4 @@ public class CardVO {
         this.money = money;
         this.show = show;
     }
-
 }

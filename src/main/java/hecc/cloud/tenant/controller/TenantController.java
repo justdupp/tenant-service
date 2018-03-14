@@ -92,7 +92,7 @@ public class TenantController extends BaseController  {
             return successed(tenantRepository.findByPlatformAndDelIsFalse(platform).stream()
                     .map(tenant -> new AdminTenantVO(tenant)).collect(toList()));
         } else {
-            return failed("参数不能都为空", 1001);
+            return failed("参数不能都为空", ERROR_VALID_FAILED);
         }
     }
 
@@ -104,7 +104,7 @@ public class TenantController extends BaseController  {
         TenantEntity oldTopTenant = tenantRepository
                 .findOneByPlatformAndTopTenantIsTrueAndDelIsFalse(newTopTenant.platform);
         if (oldTopTenant != null) {
-            return failed("已经存在顶级租户", 1001);
+            return failed("已经存在顶级租户", ERROR_VALID_FAILED);
         } else {
             newTopTenant.topTenant = true;
             tenantRepository.saveAndFlush(newTopTenant);

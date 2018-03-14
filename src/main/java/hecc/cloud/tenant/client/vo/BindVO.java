@@ -5,7 +5,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * @Auther xuhoujun
- * @Description:
+ * @Description: 绑定VO
  * @Date: Created In 下午10:32 on 2018/3/13.
  */
 public class BindVO {
