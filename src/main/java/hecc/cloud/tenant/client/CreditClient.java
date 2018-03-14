@@ -16,8 +16,8 @@ import java.util.List;
 public interface CreditClient {
 
     @GetMapping("/domestic/allCards")
-    public List<CardVO> getAllCard();
+    List<CardVO> getAllCard();
 
     @PostMapping("/domestic/createCard")
-    public void saveAndUpdateCard(CardVO cardVO);
+    void saveAndUpdateCard(CardVO cardVO);
 }

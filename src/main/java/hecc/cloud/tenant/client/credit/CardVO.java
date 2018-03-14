@@ -33,9 +33,18 @@ public class CardVO {
      * 金额
      */
     public String money;
+    /**
+     * 是否显示
+     */
+    public Boolean show;
+
+    public CardVO(Long id, Boolean show) {
+        this.id = id;
+        this.show = show;
+    }
 
     public CardVO(Long id, String name, CreditBankTypeEnum type, String short_name,
-                  String bank_logo, String bank_detail, String money) {
+                  String bank_logo, String bank_detail, String money,Boolean show) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -43,6 +52,7 @@ public class CardVO {
         this.bank_logo = bank_logo;
         this.bank_detail = bank_detail;
         this.money = money;
+        this.show = show;
     }
 
 }
