@@ -6,7 +6,7 @@ import hecc.cloud.tenant.entity.TenantEntity;
 import hecc.cloud.tenant.jpa.CodeRepository;
 import hecc.cloud.tenant.jpa.TenantRepository;
 import hecc.cloud.tenant.service.AuthCardService;
-import hecc.cloud.tenant.vo.TenantEntityVO;
+import hecc.cloud.tenant.vo.TenantInfoVO;
 import hecc.cloud.tenant.vo.quickpass.BindVO;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -44,7 +44,7 @@ public class APIController extends BaseController{
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public ResponseVO getInfo(@RequestHeader Long tenantId) {
         TenantEntity tenant = tenantRepository.findOne(tenantId);
-        return successed(new TenantEntityVO(tenant));
+        return successed(new TenantInfoVO(tenant));
     }
 
     @ApiOperation(value = "上传图片")

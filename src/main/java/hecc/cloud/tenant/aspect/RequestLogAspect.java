@@ -26,7 +26,7 @@ import java.util.Map;
 @Component
 public class RequestLogAspect {
 
-    private Logger logger = Logger.getLogger("mongodb");
+    private Logger logger = Logger.getLogger(RequestLogAspect.class);
 
     @Pointcut("execution(public * hecc.cloud.tenant.controller..*.*(..))")
     public void requestLog(){}
