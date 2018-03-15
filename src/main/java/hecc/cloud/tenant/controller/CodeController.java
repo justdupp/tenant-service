@@ -3,10 +3,12 @@ package hecc.cloud.tenant.controller;
 import hecc.cloud.tenant.client.QuickPassClient;
 import hecc.cloud.tenant.entity.CodeEntity;
 import hecc.cloud.tenant.entity.TenantEntity;
+import hecc.cloud.tenant.enumer.CodeTypeEnum;
 import hecc.cloud.tenant.jpa.CodeRepository;
 import hecc.cloud.tenant.jpa.TenantRepository;
 import hecc.cloud.tenant.vo.quickpass.CodeVO;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,7 @@ public class CodeController extends BaseController {
             quickPassClient.modifyCode(code);
             return successed(null);
         } else {
-            return failed("code不能为空", 1001);
+            return failed("code不能为空", ERROR_BIND_CODE_FAILED);
         }
     }
 
@@ -48,7 +50,7 @@ public class CodeController extends BaseController {
             quickPassClient.modifyCodeOwner(ownerId, code);
             return successed(null);
         } else {
-            return failed("ownerId或code不能为空", 1001);
+            return failed("ownerId或code不能为空", ERROR_BIND_CODE_FAILED);
         }
     }
 
@@ -57,7 +59,7 @@ public class CodeController extends BaseController {
     public ResponseVO setDefaultCode(String platform) {
         CodeVO codeVO = quickPassClient.setDefaultCode(platform);
         if (codeVO == null) {
-            return failed("已经建过默认码", 1001);
+            return failed("已经建过默认码", ERROR_BIND_CODE_FAILED);
         } else {
             return successed(null);
         }
@@ -71,7 +73,7 @@ public class CodeController extends BaseController {
             quickPassClient.setTopCode(tenantId);
             return successed(null);
         } else {
-            return failed("不是顶级租户", 1001);
+            return failed("不是顶级租户", ERROR_BIND_CODE_FAILED);
         }
     }
 
@@ -87,7 +89,7 @@ public class CodeController extends BaseController {
         if (tenantId != null) {
             return successed(quickPassClient.getCodeListByTenantId(tenantId));
         } else {
-            return failed("tenantId不能为空", 1001);
+            return failed("tenantId不能为空", ERROR_BIND_CODE_FAILED);
         }
     }
 
@@ -102,8 +104,21 @@ public class CodeController extends BaseController {
             quickPassClient.bindCode(code, tenantId);
             return successed(null);
         } else {
-            return failed("tenantId或codeId不能为空", 1001);
+            return failed("tenantId或codeId不能为空", ERROR_BIND_CODE_FAILED);
         }
+    }
+
+    @ApiOperation(value = "创建code")
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String crateCode(Long tenantId, String platform, CodeTypeEnum codeType) {
+        CodeEntity codeEntity = new CodeEntity();
+        codeEntity.tenant = tenantId == null ? null : tenantRepository.findOne(tenantId);
+        codeEntity.type = codeType;
+        codeEntity.platform = platform;
+        codeRepository.saveAndFlush(codeEntity);
+         codeEntity.code = DigestUtils.sha1Hex(codeEntity.id+ "");
+        codeRepository.save(codeEntity);
+        return codeEntity.code;
     }
 
 
