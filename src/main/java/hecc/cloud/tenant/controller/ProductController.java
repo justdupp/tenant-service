@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/product")
 public class ProductController extends BaseController {
+
     @Autowired
     private CreditClient creditClient;
 
@@ -29,19 +30,19 @@ public class ProductController extends BaseController {
 
     @ApiOperation(value = "新增产品")
     @PostMapping("/add")
-    public ResponseVO addProduct(String name, String short_name, String bank_logo,
-                                 String bank_detail, String money, CreditBankTypeEnum type, Boolean show) {
+    public ResponseVO addProduct(String name, String shortName, String bankLogo,
+                                 String bankDetail, String money, CreditBankTypeEnum type, Boolean show) {
         creditClient.saveAndUpdateCard(
-                new CardVO(null, name, type, short_name, bank_logo, bank_detail, money, show));
+                new CardVO(null, name, type, shortName, bankLogo, bankDetail, money, show));
         return successed(null);
     }
 
     @ApiOperation(value = "更新产品")
     @PostMapping("/modify")
-    public ResponseVO modProduct(Long id, String name, String short_name, String bank_logo,
-                                 String bank_detail, String money, CreditBankTypeEnum type, Boolean show) {
+    public ResponseVO modProduct(Long id, String name, String shortName, String bankLogo,
+                                 String bankDetail, String money, CreditBankTypeEnum type, Boolean show) {
         creditClient.saveAndUpdateCard(
-                new CardVO(id, name, type, short_name, bank_logo, bank_detail, money, show));
+                new CardVO(id, name, type, shortName, bankLogo, bankDetail, money, show));
         return successed(null);
     }
 
