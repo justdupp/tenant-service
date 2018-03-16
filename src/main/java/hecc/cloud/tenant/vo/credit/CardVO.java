@@ -8,6 +8,7 @@ import hecc.cloud.tenant.enumer.CreditBankTypeEnum;
  * @Date: Created In 下午10:57 on 2018/3/14.
  */
 public class CardVO {
+
     public Long id;
     /**
      * 卡名称
@@ -20,15 +21,15 @@ public class CardVO {
     /**
      * 卡简称
      */
-    public String short_name;
+    public String shortName;
     /**
      * 卡logo
      */
-    public String bank_logo;
+    public String bankLogo;
     /**
      * 卡全程
      */
-    public String bank_detail;
+    public String bankDetail;
     /**
      * 金额
      */
@@ -43,14 +44,14 @@ public class CardVO {
         this.show = show;
     }
 
-    public CardVO(Long id, String name, CreditBankTypeEnum type, String short_name,
-                  String bank_logo, String bank_detail, String money, Boolean show) {
+    public CardVO(Long id, String name, CreditBankTypeEnum type, String shortName,
+                  String bankLogo, String bankDetail, String money, Boolean show) {
         this.id = id;
         this.name = name;
         this.type = type;
-        this.short_name = short_name;
-        this.bank_logo = bank_logo;
-        this.bank_detail = bank_detail;
+        this.shortName = shortName;
+        this.bankLogo = bankLogo;
+        this.bankDetail = bankDetail;
         this.money = money;
         this.show = show;
     }

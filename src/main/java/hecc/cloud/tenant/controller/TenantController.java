@@ -45,25 +45,25 @@ public class TenantController extends BaseController {
 
     @ApiOperation(value = "更新租户信息")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public void updateTenant(@RequestBody TenantEntityVO user) {
-        TenantEntity domestic = tenantRepository.findOne(user.id);
-        if (user.receiverBankAccount != null) {
-            domestic.receiverBankAccount = user.receiverBankAccount;
+    public void updateTenant(@RequestBody TenantEntityVO tenant) {
+        TenantEntity domestic = tenantRepository.findOne(tenant.id);
+        if (tenant.receiverBankAccount != null) {
+            domestic.receiverBankAccount = tenant.receiverBankAccount;
         }
-        if (user.receiverBankName != null) {
-            domestic.receiverBankName = user.receiverBankName;
+        if (tenant.receiverBankName != null) {
+            domestic.receiverBankName = tenant.receiverBankName;
         }
-        if (user.mobile != null) {
-            domestic.mobile = user.mobile;
+        if (tenant.mobile != null) {
+            domestic.mobile = tenant.mobile;
         }
-        if (user.name != null) {
-            domestic.name = user.name;
+        if (tenant.name != null) {
+            domestic.name = tenant.name;
         }
-        if (user.idCard != null) {
-            domestic.idCard = user.idCard;
+        if (tenant.idCard != null) {
+            domestic.idCard = tenant.idCard;
         }
-        if (user.parent_id != null) {
-            domestic.parent = tenantRepository.findOne(user.parent_id);
+        if (tenant.parentId != null) {
+            domestic.parent = tenantRepository.findOne(tenant.parentId);
         }
         tenantRepository.saveAndFlush(domestic);
     }

@@ -12,7 +12,7 @@ public class TenantEntityVO extends BaseEntityVO {
     /**
      * 关联上级用户
      */
-    public Long parent_id;
+    public Long parentId;
     /**
      * 租户姓名
      */
@@ -56,7 +56,7 @@ public class TenantEntityVO extends BaseEntityVO {
 
     public TenantEntityVO(TenantEntity entity) {
         super(entity);
-        this.parent_id = entity.parent == null ? null : entity.parent.id;
+        this.parentId = entity.parent == null ? null : entity.parent.id;
         this.name = entity.name;
         this.mobile = entity.mobile;
         this.merchantCode = entity.merchantCode;
