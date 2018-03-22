@@ -36,7 +36,12 @@ public class CodeRepositoryTest {
 
     @Test
     public void testCodeRepo(){
-        CodeEntity codeEntity = codeRepository.findOneByCodeAndDelIsFalse("code11031");
+        System.out.println("第一次查询");
+        CodeEntity codeEntity = codeRepository.findOneByCodeAndDelIsFalse("code11032");
         System.out.println(codeEntity.type);
+
+        System.out.println("第二次查询");
+        CodeEntity codeEntity2 = codeRepository.findOneByCodeAndDelIsFalse("code11032");
+        System.out.println(codeEntity2.type);
     }
 }

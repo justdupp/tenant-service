@@ -79,6 +79,7 @@ public class TenantEntity extends BaseEntity {
      * 身份证正面照
      */
     public String idCardFontPic;
+
     /**
      * 身份证反面照
      */

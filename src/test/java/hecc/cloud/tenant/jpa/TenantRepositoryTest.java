@@ -47,8 +47,16 @@ public class TenantRepositoryTest {
     @Test
     public void testFindOneByPlatformAndTopTenantIsTrueAndDelIsFalse(){
         TenantEntity entity = tenantRepository.findOneByPlatformAndTopTenantIsTrueAndDelIsFalse("credit");
+        System.out.println("first select");
         System.out.println(entity.name);
         System.out.println(entity.openid);
+
+        System.out.println("second select");
+
+        TenantEntity entity2 = tenantRepository.findOneByPlatformAndTopTenantIsTrueAndDelIsFalse("credit");
+        System.out.println(entity2.name);
+        System.out.println(entity2.openid);
+
     }
 
     @Test
