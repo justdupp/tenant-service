@@ -26,7 +26,7 @@ public abstract class BaseController {
         return failed(e.getMessage(), ERROR_VALID_FAILED);
     }
 
-    protected ResponseVO successed(Object obj) {
+    protected ResponseVO succeed(Object obj) {
         ResponseVO result = new ResponseVO();
         result.msg = "OK";
         result.code = 0;

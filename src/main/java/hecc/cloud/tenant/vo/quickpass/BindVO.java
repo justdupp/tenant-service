@@ -9,7 +9,14 @@ import org.apache.commons.lang.StringUtils;
  * @Date: Created In 下午11:06 on 2018/3/14.
  */
 public class BindVO {
+
+    /**
+     * 租户名称
+     */
     public String name;
+    /**
+     * 手机号码
+     */
     public String mobile;
 
     public BindVO(TenantEntity parent) {

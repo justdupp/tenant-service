@@ -37,7 +37,7 @@ public class CodeController extends BaseController {
     public ResponseVO modifyCode(String code) {
         if (StringUtils.isNotBlank(code)) {
             quickPassClient.modifyCode(code);
-            return successed(null);
+            return succeed(null);
         } else {
             return failed("code不能为空", ERROR_BIND_CODE_FAILED);
         }
@@ -48,7 +48,7 @@ public class CodeController extends BaseController {
     public ResponseVO modifyCodeOwner(Long ownerId, String code) {
         if (ownerId != null && StringUtils.isNotBlank(code)) {
             quickPassClient.modifyCodeOwner(ownerId, code);
-            return successed(null);
+            return succeed(null);
         } else {
             return failed("ownerId或code不能为空", ERROR_BIND_CODE_FAILED);
         }
@@ -61,7 +61,7 @@ public class CodeController extends BaseController {
         if (codeVO == null) {
             return failed("已经建过默认码", ERROR_BIND_CODE_FAILED);
         } else {
-            return successed(null);
+            return succeed(null);
         }
     }
 
@@ -71,7 +71,7 @@ public class CodeController extends BaseController {
         TenantEntity tenant = tenantRepository.findOne(tenantId);
         if (BooleanUtils.isTrue(tenant.topTenant)) {
             quickPassClient.setTopCode(tenantId);
-            return successed(null);
+            return succeed(null);
         } else {
             return failed("不是顶级租户", ERROR_BIND_CODE_FAILED);
         }
@@ -80,14 +80,14 @@ public class CodeController extends BaseController {
     @ApiOperation(value = "获取默认码")
     @RequestMapping(value = "/fetchDefaultCodes", method = RequestMethod.GET)
     public ResponseVO fetchDefaultCodes() {
-        return successed(quickPassClient.fetchDefaultCodes());
+        return succeed(quickPassClient.fetchDefaultCodes());
     }
 
     @ApiOperation(value = "获取码列表")
     @RequestMapping(value = "/codes", method = RequestMethod.GET)
     public ResponseVO fetchCodes(Long tenantId) {
         if (tenantId != null) {
-            return successed(quickPassClient.getCodeListByTenantId(tenantId));
+            return succeed(quickPassClient.getCodeListByTenantId(tenantId));
         } else {
             return failed("tenantId不能为空", ERROR_BIND_CODE_FAILED);
         }
@@ -102,7 +102,7 @@ public class CodeController extends BaseController {
             tenant.parent = codeEntity.tenant;
             tenantRepository.save(tenant);
             quickPassClient.bindCode(code, tenantId);
-            return successed(null);
+            return succeed(null);
         } else {
             return failed("tenantId或codeId不能为空", ERROR_BIND_CODE_FAILED);
         }
@@ -116,7 +116,7 @@ public class CodeController extends BaseController {
         codeEntity.type = codeType;
         codeEntity.platform = platform;
         codeRepository.saveAndFlush(codeEntity);
-         codeEntity.code = DigestUtils.sha1Hex(codeEntity.id+ "");
+        codeEntity.code = DigestUtils.sha1Hex(codeEntity.id + "");
         codeRepository.save(codeEntity);
         return codeEntity.code;
     }

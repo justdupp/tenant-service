@@ -25,7 +25,7 @@ public class ProductController extends BaseController {
     @ApiOperation(value = "获取产品列表")
     @GetMapping("/list")
     public ResponseVO allProducts() {
-        return successed(creditClient.getAllCard());
+        return succeed(creditClient.getAllCard());
     }
 
     @ApiOperation(value = "新增产品")
@@ -34,7 +34,7 @@ public class ProductController extends BaseController {
                                  String bankDetail, String money, CreditBankTypeEnum type, Boolean show) {
         creditClient.saveAndUpdateCard(
                 new CardVO(null, name, type, shortName, bankLogo, bankDetail, money, show));
-        return successed(null);
+        return succeed(null);
     }
 
     @ApiOperation(value = "更新产品")
@@ -43,13 +43,13 @@ public class ProductController extends BaseController {
                                  String bankDetail, String money, CreditBankTypeEnum type, Boolean show) {
         creditClient.saveAndUpdateCard(
                 new CardVO(id, name, type, shortName, bankLogo, bankDetail, money, show));
-        return successed(null);
+        return succeed(null);
     }
 
     @ApiOperation(value = "切换产品")
     @PostMapping("/toggleShow")
     public ResponseVO toggleProductShow(Long id, boolean show) {
         creditClient.saveAndUpdateCard(new CardVO(id, show));
-        return successed(null);
+        return succeed(null);
     }
 }

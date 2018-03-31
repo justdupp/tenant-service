@@ -14,8 +14,13 @@ import org.springframework.data.jpa.repository.Query;
 @CacheConfig(cacheNames = "tenant")
 public interface CodeRepository extends JpaRepository<CodeEntity, Long> {
 
+    /**
+     * 根据码查询码对象
+     *
+     * @param code 码
+     * @return 码对象
+     */
     @Cacheable
-  //  @Query("select c from CodeEntity c where c.code=?1 and c.del= false")
     CodeEntity findOneByCodeAndDelIsFalse(String code);
 
 }

@@ -44,7 +44,7 @@ public class APIController extends BaseController {
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public ResponseVO getInfo(@RequestHeader Long tenantId) {
         TenantEntity tenant = tenantRepository.findOne(tenantId);
-        return successed(new TenantInfoVO(tenant));
+        return succeed(new TenantInfoVO(tenant));
     }
 
     @ApiOperation(value = "上传图片")
@@ -55,7 +55,7 @@ public class APIController extends BaseController {
         tenant.idCardFontPic = idCardFontPic;
         tenant.idCardBackPic = idCardBackPicUrl;
         tenantRepository.save(tenant);
-        return successed(null);
+        return succeed(null);
     }
 
     @ApiOperation(value = "鉴权操作")
@@ -64,7 +64,7 @@ public class APIController extends BaseController {
         try {
             AuthCardService.AuthResponseVO responseVO = authCardService.auth(username, account, idCard, mobile);
             if (responseVO.isSuccess) {
-                return successed(null);
+                return succeed(null);
             } else {
                 return failed(responseVO.msg, ERROR_CODE_AUTH_FAILED);
             }
@@ -74,6 +74,7 @@ public class APIController extends BaseController {
         }
     }
 
+    @ApiOperation(value = "绑定")
     @RequestMapping(value = "/bind", method = RequestMethod.POST)
     public ResponseVO bind(@RequestHeader Long tenantId, @NotNull String code) {
         TenantEntity tenant = tenantRepository.findOne(tenantId);
@@ -92,11 +93,11 @@ public class APIController extends BaseController {
                 }
                 tenant.parent = codeEntity.tenant;
                 tenantRepository.save(tenant);
-                return successed(new BindVO(tenant.parent));
+                return succeed(new BindVO(tenant.parent));
             case CREDIT_CARD:
                 //TODO: 去网银系统进行绑定
                 break;
         }
-        return successed(null);
+        return succeed(null);
     }
 }

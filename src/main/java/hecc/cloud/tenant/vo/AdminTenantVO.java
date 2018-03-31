@@ -11,11 +11,35 @@ import org.apache.commons.lang.time.DateFormatUtils;
 public class AdminTenantVO {
 
     private static final String DATE_TIME_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
+    /**
+     * id
+     */
     public Long id;
+
+    /**
+     * 名称
+     */
     public String name;
+
+    /**
+     * 身份证号码
+     */
     public String idCard;
+
+    /**
+     * 手机号
+     */
     public String mobile;
+
+    /**
+     * 平台名称
+     */
     public String platform;
+
+    /**
+     * 创建时间
+     */
     public String createDate;
 
     public AdminTenantVO(TenantEntity tenant) {

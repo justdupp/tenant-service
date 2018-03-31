@@ -81,16 +81,16 @@ public class TenantController extends BaseController {
     public ResponseVO fetchTenants(String platform, Long tenantId, String name) {
         if (tenantId != null) {
             TenantEntity tenant = tenantRepository.findOne(tenantId);
-            return successed(tenant == null ? Collections.emptyList()
+            return succeed(tenant == null ? Collections.emptyList()
                     : Arrays.asList(new AdminTenantVO(tenant)));
         } else if (StringUtils.isNotBlank(platform) && StringUtils.isNotBlank(name)) {
-            return successed(tenantRepository.findByNameAndPlatformAndDelIsFalse(name, platform).stream()
+            return succeed(tenantRepository.findByNameAndPlatformAndDelIsFalse(name, platform).stream()
                     .map(tenant -> new AdminTenantVO(tenant)).collect(toList()));
         } else if (StringUtils.isBlank(platform) && StringUtils.isNotBlank(name)) {
-            return successed(tenantRepository.findByNameAndDelIsFalse(name).stream()
+            return succeed(tenantRepository.findByNameAndDelIsFalse(name).stream()
                     .map(tenant -> new AdminTenantVO(tenant)).collect(toList()));
         } else if (StringUtils.isNotBlank(platform) && StringUtils.isBlank(name)) {
-            return successed(tenantRepository.findByPlatformAndDelIsFalse(platform).stream()
+            return succeed(tenantRepository.findByPlatformAndDelIsFalse(platform).stream()
                     .map(tenant -> new AdminTenantVO(tenant)).collect(toList()));
         } else {
             return failed("参数不能都为空", ERROR_VALID_FAILED);
@@ -116,14 +116,14 @@ public class TenantController extends BaseController {
                     tenantRepository.save(u);
                 }
             });
-            return successed(null);
+            return succeed(null);
         }
     }
 
     @ApiOperation(value = "获取默认租户")
     @RequestMapping(value = "/fetchDefaultTenant", method = RequestMethod.GET)
     public ResponseVO fetchDefaultTenant() {
-        return successed(tenantRepository.findByTopTenantIsTrueAndDelIsFalse().stream()
+        return succeed(tenantRepository.findByTopTenantIsTrueAndDelIsFalse().stream()
                 .map(tenant -> new AdminTenantVO(tenant))
                 .collect(toList()));
     }
