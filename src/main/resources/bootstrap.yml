@@ -1,0 +1,27 @@
+spring:
+   application:
+        name: tenant-service
+   datasource:
+       url: jdbc:mysql://localhost:3306/hecc_tenant?characterEncoding=utf-8
+       username: root
+       password: root
+       driver-class-name: com.mysql.jdbc.Driver
+   jpa:
+       show-sql: true
+       database: mysql
+
+tenant-service:
+       auth-card:
+            url: xxx
+            code: ddd
+
+tenant-swagger2:
+    hostname: localhost:8080
+    isEnable: true
+
+server:
+   port: 8079
+eureka:
+   client:
+       serviceUrl:
+           defaultZone: http://localhost:8081/eureka/
