@@ -9,15 +9,13 @@ spring:
    jpa:
        show-sql: true
        database: mysql
-
-tenant-service:
-       auth-card:
-            url: xxx
-            code: ddd
-
-tenant-swagger2:
-    hostname: localhost:8080
-    isEnable: true
+   cloud:
+      config:
+         label: master
+         profile: dev
+         discovery:
+            enabled: true
+            serviceId: quick-pass-config
 
 server:
    port: 8079
@@ -25,3 +23,4 @@ eureka:
    client:
        serviceUrl:
            defaultZone: http://localhost:8081/eureka/
+
