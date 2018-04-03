@@ -23,11 +23,11 @@ import java.util.Map;
  * @Date: Created In 下午11:15 on 2018/3/14.
  */
 @Aspect
-@Order(5)
+@Order(1)
 @Component
 public class RequestLogAspect {
 
-    private Logger logger = Logger.getLogger(RequestLogAspect.class);
+    private Logger logger = Logger.getLogger("mongodb");
 
     @Pointcut("execution(public * hecc.cloud.tenant.controller..*.*(..))")
     public void requestLog() {
