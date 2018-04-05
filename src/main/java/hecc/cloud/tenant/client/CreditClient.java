@@ -15,9 +15,19 @@ import java.util.List;
 @FeignClient("credit-service")
 public interface CreditClient {
 
+    /**
+     * 获取卡列表
+     *
+     * @return List<CardVO>
+     */
     @GetMapping("/domestic/allCards")
     List<CardVO> getAllCard();
 
+    /**
+     * 新增卡
+     *
+     * @param cardVO 卡VO
+     */
     @PostMapping("/domestic/createCard")
     void saveAndUpdateCard(CardVO cardVO);
 }
