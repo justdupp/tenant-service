@@ -14,8 +14,7 @@ import java.util.List;
 public class QuickPassClientHystric implements QuickPassClient {
 
     @Override
-    public CodeVO setDefaultTenant(Long tenantId) {
-        return null;
+    public void setDefaultTenant(Long tenantId) {
     }
 
     @Override
@@ -24,7 +23,7 @@ public class QuickPassClientHystric implements QuickPassClient {
     }
 
     @Override
-    public BaseController.ResponseVO createCode(Long tenantId, String code) {
+    public BaseController.ResponseVO createCode(Long tenantId) {
         return null;
     }
 

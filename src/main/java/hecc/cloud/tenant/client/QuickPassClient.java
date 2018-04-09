@@ -23,7 +23,7 @@ public interface QuickPassClient {
      * @return codeVO
      */
     @PostMapping("/domestic/tenant/default")
-    CodeVO setDefaultTenant(@RequestParam("tenantId") Long tenantId);
+    void setDefaultTenant(@RequestParam("tenantId") Long tenantId);
 
     /**
      * 绑码操作
@@ -39,11 +39,10 @@ public interface QuickPassClient {
      * 创建码
      *
      * @param tenantId 租户id
-     * @param code     码
      * @return
      */
     @RequestMapping(value = "/domestic/code", method = RequestMethod.POST)
-    ResponseVO createCode(@RequestParam("tenantId") Long tenantId, @RequestParam("code") String code);
+    ResponseVO createCode(@RequestParam("tenantId") Long tenantId);
 
     /**
      * 根据租户id获取码
@@ -113,7 +112,7 @@ public interface QuickPassClient {
      *
      * @return List<CodeVO>
      */
-    @GetMapping("/domestic/code/default")
+    @GetMapping("/domestic/code/fetchDefault")
     List<CodeVO> fetchDefaultCodes();
 
 }

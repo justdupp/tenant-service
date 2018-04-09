@@ -128,4 +128,10 @@ public class TenantController extends BaseController {
                 .collect(toList()));
     }
 
+    @RequestMapping(value = "/isTopTenant", method = RequestMethod.GET)
+    boolean getIsTopTenant(@RequestParam("tenantId") Long tenantId){
+        TenantEntity entity =  tenantRepository.findOne(tenantId);
+        return entity.topTenant;
+    }
+
 }
