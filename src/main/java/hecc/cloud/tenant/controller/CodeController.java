@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Auther xuhoujun
- * @Description: 码控制器
- * @Date: Created In 下午10:24 on 2018/3/12.
+ * @author xuhoujun
+ * @description: 码控制器
+ * @date: Created In 下午10:24 on 2018/3/12.
  */
 @RestController
 @RequestMapping("/code")

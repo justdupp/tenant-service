@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 /**
- * @Auther xuhoujun
- * @Description: 租户jpa
- * @Date: Created In 下午2:00 on 2018/2/24.
+ * @author xuhoujun
+ * @description: 租户jpa
+ * @date: Created In 下午2:00 on 2018/2/24.
  */
 @CacheConfig(cacheNames = "tenant")
 public interface TenantRepository extends JpaRepository<TenantEntity, Long> {

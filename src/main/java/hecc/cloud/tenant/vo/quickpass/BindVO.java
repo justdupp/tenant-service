@@ -4,9 +4,9 @@ import hecc.cloud.tenant.entity.TenantEntity;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * @Auther xuhoujun
- * @Description: 绑定VO
- * @Date: Created In 下午11:06 on 2018/3/14.
+ * @author xuhoujun
+ * @description: 绑定VO
+ * @date: Created In 下午11:06 on 2018/3/14.
  */
 public class BindVO {
 

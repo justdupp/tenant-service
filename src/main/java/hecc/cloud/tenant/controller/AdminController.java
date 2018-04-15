@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Auther xuhoujun
- * @Description: admin控制器
- * @Date: Created In 下午8:51 on 2018/2/27.
+ * @author xuhoujun
+ * @description: admin控制器
+ * @date: Created In 下午8:51 on 2018/2/27.
  */
 @RestController
 public class AdminController extends BaseController {

@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * @Auther xuhoujun
- * @Description: 封装接口公共返回
- * @Date: Created In 下午2:44 on 2018/2/24.
+ * @author xuhoujun
+ * @description: 封装接口公共返回
+ * @date: Created In 下午2:44 on 2018/2/24.
  */
 public abstract class BaseController {
 

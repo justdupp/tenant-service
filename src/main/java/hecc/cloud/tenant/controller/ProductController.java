@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Auther xuhoujun
- * @Description: 产品控制器
- * @Date: Created In 下午10:26 on 2018/3/14.
+ * @author xuhoujun
+ * @description: 产品控制器
+ * @date: Created In 下午10:26 on 2018/3/14.
  */
 @RestController
 @RequestMapping("/product")

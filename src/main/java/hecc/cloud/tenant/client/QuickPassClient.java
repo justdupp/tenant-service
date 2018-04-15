@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * @Auther xuhoujun
- * @Description: 闪付客户端接口
- * @Date: Created In 下午10:45 on 2018/2/27.
+ * @author xuhoujun
+ * @description: 闪付客户端接口
+ * @date: Created In 下午10:45 on 2018/2/27.
  */
 @FeignClient(value = "quickpass-service",fallback = QuickPassClientHystric.class)
 public interface QuickPassClient {

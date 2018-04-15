@@ -17,9 +17,9 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 /**
- * @Auther xuhoujun
- * @Description: 租户控制器
- * @Date: Created In 下午8:35 on 2018/2/25.
+ * @author xuhoujun
+ * @description: 租户控制器
+ * @date: Created In 下午8:35 on 2018/2/25.
  */
 @RestController
 @RequestMapping("/tenant")

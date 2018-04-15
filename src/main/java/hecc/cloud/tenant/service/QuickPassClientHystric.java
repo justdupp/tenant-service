@@ -7,9 +7,9 @@ import hecc.cloud.tenant.vo.quickpass.CodeVO;
 import java.util.List;
 
 /**
- * @Auther xuhoujun
- * @Description: 闪付熔断器
- * @Date: Created In 下午6:13 on 2018/4/6.
+ * @author xuhoujun
+ * @description: 闪付熔断器
+ * @date: Created In 下午6:13 on 2018/4/6.
  */
 public class QuickPassClientHystric implements QuickPassClient {
 

@@ -5,9 +5,9 @@ import hecc.cloud.tenant.enumer.CodeTypeEnum;
 import javax.persistence.*;
 
 /**
- * @Auther xuhoujun
- * @Description: 码实体对象
- * @Date: Created In 下午1:56 on 2018/2/24.
+ * @author xuhoujun
+ * @description: 码实体对象
+ * @date: Created In 下午1:56 on 2018/2/24.
  */
 @Entity
 @Table(name = "code")

@@ -3,9 +3,9 @@ package hecc.cloud.tenant.vo.credit;
 import hecc.cloud.tenant.enumer.CreditBankTypeEnum;
 
 /**
- * @Auther xuhoujun
- * @Description: 银行卡VO
- * @Date: Created In 下午10:57 on 2018/3/14.
+ * @author xuhoujun
+ * @description: 银行卡VO
+ * @date: Created In 下午10:57 on 2018/3/14.
  */
 public class CardVO {
 

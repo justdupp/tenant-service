@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.net.URLEncoder;
 
 /**
- * @Auther xuhoujun
- * @Description: auth service
- * @Date: Created In 下午9:34 on 2018/3/13.
+ * @author xuhoujun
+ * @description: auth service
+ * @date: Created In 下午9:34 on 2018/3/13.
  */
 @Component
 public class AuthCardService {

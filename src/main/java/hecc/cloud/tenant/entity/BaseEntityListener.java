@@ -4,9 +4,9 @@ import javax.persistence.PreUpdate;
 import java.util.Date;
 
 /**
- * @Auther xuhoujun
- * @Description: 实体基础类监听
- * @Date: Created In 下午1:33 on 2018/2/24.
+ * @author xuhoujun
+ * @description: 实体基础类监听
+ * @date: Created In 下午1:33 on 2018/2/24.
  */
 public class BaseEntityListener {
 

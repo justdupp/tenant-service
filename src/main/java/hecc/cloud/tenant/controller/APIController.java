@@ -21,9 +21,9 @@ import javax.validation.constraints.NotNull;
 import java.io.IOException;
 
 /**
- * @Auther xuhoujun
- * @Description: API控制器
- * @Date: Created In 下午9:03 on 2018/3/13.
+ * @author xuhoujun
+ * @description: API控制器
+ * @date: Created In 下午9:03 on 2018/3/13.
  */
 @RestController
 @RequestMapping("/api/tenant/")

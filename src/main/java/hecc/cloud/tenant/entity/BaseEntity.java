@@ -4,9 +4,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @Auther xuhoujun
- * @Description: 封装实体基础属性
- * @Date: Created In 下午1:30 on 2018/2/24.
+ * @author xuhoujun
+ * @description: 封装实体基础属性
+ * @date: Created In 下午1:30 on 2018/2/24.
  */
 @MappedSuperclass
 @EntityListeners(BaseEntityListener.class)

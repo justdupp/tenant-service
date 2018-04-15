@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 /**
- * @Auther xuhoujun
- * @Description: code jpa
- * @Date: Created In 下午1:59 on 2018/2/24.
+ * @author xuhoujun
+ * @description: code jpa
+ * @date: Created In 下午1:59 on 2018/2/24.
  */
 @CacheConfig(cacheNames = "tenant")
 public interface CodeRepository extends JpaRepository<CodeEntity, Long> {

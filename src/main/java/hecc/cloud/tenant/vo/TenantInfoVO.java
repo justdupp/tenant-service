@@ -3,9 +3,9 @@ package hecc.cloud.tenant.vo;
 import hecc.cloud.tenant.entity.TenantEntity;
 
 /**
- * @Auther xuhoujun
- * @Description: 租户信息VO
- * @Date: Created In 上午12:31 on 2018/3/15.
+ * @author xuhoujun
+ * @description: 租户信息VO
+ * @date: Created In 上午12:31 on 2018/3/15.
  */
 public class TenantInfoVO {
 

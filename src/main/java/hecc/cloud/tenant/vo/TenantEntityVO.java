@@ -3,9 +3,9 @@ package hecc.cloud.tenant.vo;
 import hecc.cloud.tenant.entity.TenantEntity;
 
 /**
- * @Auther xuhoujun
- * @Description: 返回租户对象VO
- * @Date: Created In 下午8:25 on 2018/2/25.
+ * @author xuhoujun
+ * @description: 返回租户对象VO
+ * @date: Created In 下午8:25 on 2018/2/25.
  */
 public class TenantEntityVO extends BaseEntityVO {
 
