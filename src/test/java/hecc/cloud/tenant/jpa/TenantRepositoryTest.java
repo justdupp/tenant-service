@@ -12,9 +12,9 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * @Auther xuhoujun
- * @Description:
- * @Date: Created In 下午2:28 on 2018/2/24.
+ * @author xuhoujun
+ * @description:
+ * @date: Created In 下午2:28 on 2018/2/24.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -12,9 +12,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.*;
 
 /**
- * @Auther xuhoujun
- * @Description: code 单元测试
- * @Date: Created In 下午2:02 on 2018/2/24.
+ * @author xuhoujun
+ * @description: code 单元测试
+ * @date: Created In 下午2:02 on 2018/2/24.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
